@@ -1,6 +1,13 @@
 @Library('jenkins-shared-lib')_
 
-stage('Echo') {
-    echo 'Using shared lib.'
-    test 'Sigi'
+node {
+    stage('Run shell script') {
+        echo 'Running shell script'
+        sayscript 'cow'
+    }
+
+    stage('Nexus upload') {
+        sh('touch test.zip')
+        nexus_upload2()
+    }
 }
